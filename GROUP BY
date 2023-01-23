@@ -1,0 +1,22 @@
+#.. 1. Which account (by name) placed the earliest order? Your solution should have the account name and the date of the order.
+
+SELECT accounts.name AS account_name, 
+orders.occurred_at AS date_of_order
+FROM orders
+JOIN accounts
+ON orders.account_id = accounts.id
+ORDER BY date_of_order
+LIMIT 1;
+
+
+#.. 2. Find the total sales in usd for each account. You should include two columns - the total sales for each company's orders in usd and the company name.
+
+SELECT accounts.name AS company_name, 
+SUM (orders.total) AS total_usd
+FROM orders
+JOIN accounts
+ON orders.account_id = accounts.id
+GROUP BY company_name
+ORDER BY company_name;
+
+
